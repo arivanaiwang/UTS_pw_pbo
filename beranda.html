@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marine Explorer di Wilayah Banten</title>
+    <link rel="stylesheet" href="css/beranda.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="img/20240914_054457.png" alt="Logo pembuat">
+            <h1>Marine Explorer di Wilayah Banten</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="beranda.html">Beranda</a></li>
+                <li><a href="#">Tentang Kami</a></li>
+                <li><a href="#">Peta</a></li>
+                <li><a href="http://localhost/uts_pw_pbo/login.php">Login/Registrasi</a></li>
+                <li><a href="#">Kontak</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="map-section">
+        <h2>Eksplorasi Laut Banten</h2>
+        <div class="map-container" id="map"></div>
+    </section>
+
+    <section class="description">
+        <p>Selamat datang di Marine Explorer! Jelajahi keindahan bawah laut Banten dan temukan lokasi snorkeling, penyelaman, serta pantai terbaik.</p>
+        <button onclick="showLoginRegisterPrompt()">Tambah Lokasi Baru</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Marine Explorer. Hubungi kami di <a href="https://www.instagram.com/arivanaiwang/">ig:@arivanaiwang</a> | <a href="https://www.facebook.com/arivanaiwang.arivanaiwang.5?mibextid=ZbWKwL">Fb:Arivanaiwang</a> | <a href="whatsApp:08989047989">WhatsApp</a></p>
+    </footer>
+    <script>
+        var map = L.map('map').setView([-6.5, 106.1], 8);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 10,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var snorkelingSpot = L.marker([-6.738719671743339, 105.2567321356905]).addTo(map);
+        snorkelingSpot.bindPopup('<b>Spot Snorkeling Pulau Peutjang</b><br>Terumbu karang yang indah. Jenis spesies: ikan badut, terumbu karang. <br><img src="img/pulau Peutjang.jpg" alt="Spot Snorkeling A" width="50%">');
+
+        var divingSpot = L.marker([-5.945989180339795, 105.86255363802267]).addTo(map);
+        divingSpot.bindPopup('<b>Spot Menyelam Pulau Sangiang</b><br>Penyelaman untuk pemula. Banyak ikan dan keindahan bawah laut. <br><img src="img/pulau sangiang.jpg" alt="Spot Menyelam B" width="50%" heigth="50%">');
+
+        var beachSpot = L.marker([-6.478713549194854, 105.65558802683873]).addTo(map);
+        beachSpot.bindPopup('<b>Pantai Tanjung Lesung</b><br>Pantai yang bersih dan sepi. Cocok untuk bersantai. <br><img src="img/Pantai tj lesung.jpg" Pantai C" width="50%">');
+
+        function showLoginRegisterPrompt() {
+            var isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn) {
+                window.location.href = "add_location.php";
+            } else {
+                alert("Silakan login atau registrasi terlebih dahulu.");
+                window.location.href = "http://localhost/uts_pw_pbo/login.php";
+            }
+        }
+    </script>
+</body>
+</html>
